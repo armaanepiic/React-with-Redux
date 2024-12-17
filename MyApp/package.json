@@ -11,5 +11,8 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "date-format": "^4.0.14"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
   }
 }
