@@ -1,18 +1,27 @@
-import { Component } from 'react'; 
 import './App.css'
-import Person from './components/Person'
+import Biodata from './components/Biodata';
 
-class App extends Component {
-  render() {
-      return (
-        <div className="App">
-          <h1>Hello World!</h1>
-          <Person name="arman" age="27">I am some info of person</Person>
-          <Person name="nusrat" age="25" />
-          <Person name="nomi" age="28" />
-        </div>
-      );
-  }
+function App() {
+  return (
+    <div className="biodata">
+      <Biodata
+        name="Arman Hossain"
+        age={28}
+        mobile="01874015451"
+        occupation="Software Engineer"
+        skills={["C++", "JS", "Python"]}
+        interests={["Swimming", "Cycling", "Travelling"]}
+      />
+      <hr />
+      <Biodata
+        name="Nusratun Nabi"
+        age={25}
+        occupation="UI UX Designer"
+        skills={["Figma", "Adobe", "Canva"]}
+        interests={["Shopping", "Reading", "Travelling"]}
+      />
+    </div>
+  );
 }
 
-export default App
+export default App;
