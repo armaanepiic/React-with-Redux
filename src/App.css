@@ -1,8 +1,14 @@
-
-.personal-info {
-    border: 2px solid black;
+h1{
+    text-align: center;
+}
+img{
+    width: 500px;
+}
+.photos {
+    display: flex;
+    gap: 10px;
+    margin: 10px;
     padding: 20px;
-    margin: 20px;
-    background: teal;
-    color: white;
+    align-items: center;
+    justify-content: center;
 }
