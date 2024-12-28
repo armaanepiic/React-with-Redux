@@ -36,3 +36,38 @@ export const people = [
     imageId: "lrWQx8l",
   },
 ];
+
+
+export default function List() {
+  const chemists = people.filter((person) => person.profession === "chemist");
+  const others = people.filter((person) => person.profession !== "chemist");
+  console.log(chemists);
+  console.log(others);
+  return (
+    <article>
+      <h1>Scientists</h1>
+      <h2>Chemists</h2>
+      <ul>
+        {chemists.map((person) => (
+          <li key={person.id}>
+            <p>
+              <b>{person.name}:</b>
+              {" " + person.profession + " "}known for {person.accomplishment}
+            </p>
+          </li>
+        ))}
+      </ul>
+      <h2>Everyone Else</h2>
+      <ul>
+        {others.map((person) => (
+          <li key={person.id}>
+            <p>
+              <b>{person.name}:</b> {" " + person.profession + " "} known for{" "}
+              {person.accomplishment}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </article>
+  );
+}
