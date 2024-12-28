@@ -1,31 +1,29 @@
-function Biodata(obj) {
-  console.log(obj);
-    const { name, age, mobile, occupation, skills, interests } = obj;
+
+function Item({ name, isPacked }) {
+  let itemContent = name;
+  if (isPacked) {
+    itemContent = (
+      <del>
+        {name + "✅"}
+      </del>
+    )
+  }
   return (
-    <div className="biodata">
-      <h1>Biodata of {name}</h1>
-      <div className="personal-info">
-        <p>Age: {age}</p>
-        {mobile && <p>Mobile: {mobile}</p>}
-        <p>Occupation: {occupation}</p>
-      </div>
-      <div className="skills">
-        <h2>My Skills</h2>
-        <ul>
-          {skills?.map((skill) => (
-            <li key={skill}>{skill}</li>
-          ))}
-        </ul>
-      </div>
-      <div className="interests">
-        <h2>My Interests</h2>
-        <ul>
-          {interests.map((interest) => (
-            <li key={interest}>{interest}</li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    <li className="item">
+      {itemContent}
+    </li>
+  )
+}
+
+export default function PackingList() {
+  return (
+    <section>
+      <h1>Sally Ride's Packing List</h1>
+      <ul>
+        <Item isPacked={true} name="Space suit" />
+        <Item isPacked={true} name="Helmet with a golden leaf" />
+        <Item isPacked={false} name="Photo of Tam" />
+      </ul>
+    </section>
   );
 }
-export default Biodata;
