@@ -3,13 +3,13 @@ import { useState } from "react";
 
 export default function Counter() {
     
-    const [count, setCount] = useState(0); // [current value, change value]
+    let [count, setCount] = useState(0); // [current value, change value]
     const [message, setMessage] = useState("Welcome to the class")
     const handleClick = () => {
         console.log("Clicked");
         // 1. increment count
         // 2. rerender
-        setCount(count + 1);
+        setCount((c) => c+3);
     }
     const handleMessage = () => {
         console.log("message changed");
