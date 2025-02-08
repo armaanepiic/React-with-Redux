@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 export default function App() {
   const [count, setCount] = useState(0);
   const [posts, setPosts] = useState([]);
-  console.log("I am running");
-  fetch("https://jsonplaceholder.typicode.com/posts?_limit=5")
-    .then((res) => res.json())
-    .then((data) => setPosts(data));
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts?_limit=5")
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        setPosts(data);
+        return;
+      });
+    console.log("I am inside useEffect");
+  },[])
+  console.log("I am outside useEffect");
+  
   return (
     <div>
       <p>The value of the counter is {count}</p>
@@ -21,3 +29,11 @@ export default function App() {
     </div>
   );
 }
+/*
+fetch("https://jsonplaceholder.typicode.com/posts?_limit=5")
+    .then((res) => res.json())
+    .then((data) => {
+      // console.log(data);
+      setPosts(data);
+    });
+*/
