@@ -1,66 +1,23 @@
-/*
-function Item({ name, isPacked }) {
-  let itemContent = name;
-  if (isPacked) {
-    itemContent = <del>{name + "✅"}</del>;
-  }
-  return <li className="item">{itemContent}</li>;
-}
-  */
-/*
-function Item({ name, isPacked }) {
-  if (isPacked)
-    return <li className="item">{name} ✅</li>;
-  else
-    return <li className="item">{name}</li>;
-}
-    */
-/*
-function Item({ name, isPacked }) {
-  if (isPacked) return null;
-  else
-    return <li className="item">{name}</li>;
-}
-    */
-   /*
-function Item({ name, isPacked }) {
-  return (
-    <li className="item">
-      {isPacked ? name+"✅":name}
-    </li>
-  )
-}
-  */
- /*
-function Item({ name, isPacked }) {
-  return (
-    <li className="item">
-      {isPacked ? (
-        <del>{name+" ✅"}</del>
-      ) : (
-          name
-      )}
-    </li>
-  );
-}
-  */
-function Item({ name, isPacked }) {
-  return (
-    <li className="item">
-      {name} {isPacked && " ✅"}
-    </li>
-  );
-}
+import { useState } from "react";
+import "./App.css";
 
-export default function PackingList() {
+export default function App() {
+  const [count, setCount] = useState(0);
+  const [posts, setPosts] = useState([]);
+  console.log("I am running");
+  fetch("https://jsonplaceholder.typicode.com/posts?_limit=5")
+    .then((res) => res.json())
+    .then((data) => setPosts(data));
   return (
-    <section>
-      <h1>Sally Ride's Packing List</h1>
-      <ul>
-        <Item isPacked={true} name="Space suit" />
-        <Item isPacked={true} name="Helmet with a golden leaf" />
-        <Item isPacked={false} name="Photo of Tam" />
-      </ul>
-    </section>
+    <div>
+      <p>The value of the counter is {count}</p>
+      <button onClick={() => { setCount(count + 1) }}>Increase by 1</button>
+      <div className="posts">
+        <h2>All Posts</h2>
+        <ul>
+          {posts?.map((post) => (<li key={post.id}>{post.title}</li>))}
+        </ul>
+      </div>
+    </div>
   );
 }
