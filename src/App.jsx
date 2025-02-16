@@ -1,39 +1,37 @@
-import { useState, useEffect } from "react";
-import "./App.css";
+
+import { useState, useCallback } from "react";
+import OurAppTitle from "./components/OurAppTitle";
+import Button from "./components/Button";
+import Title from "./components/Title";
 
 export default function App() {
-  const [count, setCount] = useState(0);
-  const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts?_limit=5")
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        setPosts(data);
-        return;
-      });
-    console.log("I am inside useEffect");
-  },[])
-  console.log("I am outside useEffect");
+
+  const [counter1, setCounter1] = useState(0);
+  const [counter2, setCounter2] = useState(10);
+  
+  const increaseHandler1 = useCallback(() => {
+    setCounter1((prev) => prev + 1);
+  }, []);
+  
+  const increaseHandler2 = useCallback(() => {
+    setCounter2((prev) => prev + 5);
+  },[]);
+
+  console.log("App is rendering");
   
   return (
-    <div>
-      <p>The value of the counter is {count}</p>
-      <button onClick={() => { setCount(count + 1) }}>Increase by 1</button>
-      <div className="posts">
-        <h2>All Posts</h2>
-        <ul>
-          {posts?.map((post) => (<li key={post.id}>{post.title}</li>))}
-        </ul>
+    <div className="App">
+      <OurAppTitle />
+      <hr />
+      <div className="counter-app-1">
+        <Title value={counter1} />
+        <Button clickHandler={increaseHandler1} />
+      </div>
+      <hr />
+      <div className="counter-app-1">
+        <Title value={counter2} />
+        <Button clickHandler={increaseHandler2} />
       </div>
     </div>
   );
 }
-/*
-fetch("https://jsonplaceholder.typicode.com/posts?_limit=5")
-    .then((res) => res.json())
-    .then((data) => {
-      // console.log(data);
-      setPosts(data);
-    });
-*/
